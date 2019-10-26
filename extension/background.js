@@ -6,9 +6,10 @@ script.src = "client.js";
 
 chrome.identity.getAuthToken(
 	{'interactive': true},
-	function(){
-	  //load Google's javascript client libraries
-		window.gapi_onload = authorize;
+	function(token){
+        //load Google's javascript client libraries
+        console.log(token);
+		    window.gapi_onload = authorize;
         // loadScript('https://apis.google.com/js/client.js');
         // gapi.client.setApiKey("AIzaSyDqr5vcSftuPVoy0gs4iJNkdZp3rImB_Nc");
     }
@@ -59,7 +60,9 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         console.log(request.usrid);
         console.log(request.msgid);
-        getMessage(request.usrid, request.msgid, readMessage());
+        chrome.identity.getAuthToken(function(token){
+          getMessage(request.usrid, request.msgid, readMessage();
+        })
         console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
         sendResponse({worked: "yes"});
     });
