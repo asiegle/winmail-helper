@@ -2,6 +2,10 @@
 	"manifest_version": 2,
 	"name": "WinMail Helper",
 	"version": "0.1",
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	  },
 	"oauth2": {
 		"client_id": "624743473709-guudjkt9upbm3efr74o563d6bctgl59q.apps.googleusercontent.com",
 		"scopes":["https://www.googleapis.com/auth/gmail.readonly"]
