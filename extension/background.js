@@ -10,8 +10,7 @@ chrome.identity.getAuthToken(
 	  //load Google's javascript client libraries
 		window.gapi_onload = authorize;
         // loadScript('https://apis.google.com/js/client.js');
-        
-        
+        gapi.client.setApiKey("AIzaSyCVV9GPYJZRiRP3KRuUt6j2riSjZzGqlHw");
     }
 );
 
@@ -56,6 +55,7 @@ function gmailAPILoaded(){
 }
 
 function getMessage(userId, messageId, callback) {
+
     var request = gapi.client.gmail.users.messages.get({
       'userId': userId,
       'id': messageId
