@@ -5,6 +5,7 @@
 	"permissions": [
 		"identity"
 	],
+	"content_security_policy": "script-src 'self' https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.2O_3XQTFIPY.O/m=client/rt=j/sv=1/d=1/ed=1/am=wQE/rs=AGLTcCM0JjSA0I0wvcxN0q5y4p-sc5Yxiw/cb=gapi.loaded_0; object-src 'self'",
 	"content_scripts": [
 		{
 		  "matches": ["https://mail.google.com/mail/*"],
@@ -13,12 +14,17 @@
 		}
 	  ],
 	"background": {
-		"scripts": ["background.js"],
+		"scripts": [
+			"background.js",
+			"client.js"
+		],
 		"persistent": false
 	  },
 	"oauth2": {
 		"client_id": "624743473709-guudjkt9upbm3efr74o563d6bctgl59q.apps.googleusercontent.com",
 		"scopes":["https://www.googleapis.com/auth/gmail.readonly"]
 	}
+	
+
 }
 

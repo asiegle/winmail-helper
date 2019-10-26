@@ -1,11 +1,17 @@
 //background event handlers
 //oauth2 auth
+
+var script = document.createElement('script');
+script.src = "client.js";
+
 chrome.identity.getAuthToken(
 	{'interactive': true},
 	function(){
 	  //load Google's javascript client libraries
 		window.gapi_onload = authorize;
-		loadScript('https://apis.google.com/js/client.js');
+        // loadScript('https://apis.google.com/js/client.js');
+        
+        
 	}
 );
 
@@ -21,7 +27,10 @@ function loadScript(url){
 			return;
 		}
 
-    eval(request.responseText);
+        // eval(request.responseText);
+        // var myScript = document.createElement('script');
+        // myScript.innerHTML = request.responseText;
+        // document.body.appendChild(myScript);
 	};
 
 	request.open('GET', url);
@@ -59,8 +68,7 @@ function readMessage() {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      console.log(sender.tab ?
-                  "from a content script:" + sender.tab.url :
-                  "from the extension");
-    sendResponse({worked: "yes"});
+        getMessage('me', request.id, readMessage());
+        console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
+        sendResponse({worked: "yes"});
     });
