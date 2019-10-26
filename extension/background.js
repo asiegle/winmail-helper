@@ -70,6 +70,8 @@ function readMessage() {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+        console.log(request.usrid);
+        console.log(request.msgid);
         getMessage(request.usrid, request.msgid, readMessage());
         console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
         sendResponse({worked: "yes"});
