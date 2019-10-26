@@ -10,39 +10,15 @@ chrome.identity.getAuthToken(
 	  //load Google's javascript client libraries
 		window.gapi_onload = authorize;
         // loadScript('https://apis.google.com/js/client.js');
-        gapi.client.setApiKey("AIzaSyDqr5vcSftuPVoy0gs4iJNkdZp3rImB_Nc");
+        // gapi.client.setApiKey("AIzaSyDqr5vcSftuPVoy0gs4iJNkdZp3rImB_Nc");
     }
 );
-
-
-function loadScript(url){
-  var request = new XMLHttpRequest();
-
-	request.onreadystatechange = function(){
-		if(request.readyState !== 4) {
-			return;
-		}
-
-		if(request.status !== 200){
-			return;
-		}
-
-        // eval(request.responseText);
-        // var myScript = document.createElement('script');
-        // myScript.innerHTML = request.responseText;
-        // document.body.appendChild(myScript);
-	};
-
-	request.open('GET', url);
-	request.send();
-}
-
 function authorize(){
   gapi.auth.authorize(
 		{
 			client_id: '624743473709-guudjkt9upbm3efr74o563d6bctgl59q.apps.googleusercontent.com',
 			immediate: true,
-			scope: 'https://www.googleapis.com/auth/gmail.readonly'
+			scope: 'https://mail.google.com/ https://www.googleapis.com/auth/gmail.readonly'
 		},
 		function(){
       gapi.client.load('gmail', 'v1', gmailAPILoaded);
@@ -50,26 +26,33 @@ function authorize(){
 		}
 	);
 }
-
 function gmailAPILoaded(){
     gapi.client.setApiKey("AIzaSyCVV9GPYJZRiRP3KRuUt6j2riSjZzGqlHw");
     console.log("YAY");
 }
 
-function getMessage(userId, messageId, callback) {
 
-    var request = gapi.client.gmail.users.messages.get({
+
+
+
+function getMessage(userId, messageId, callback) {
+    return gapi.client.gmail.users.messages.get({
       'userId': userId,
       'id': messageId,
-      "format": "raw",
       "prettyPrint": true
-    });
-    console.log(request)
-    request.execute(callback);
+    })
+      .then(function(response) {
+      // Handle the results here (response.result has the parsed body).
+      console.log("Response", response);
+    },
+    function(err) { 
+      console.error("Execute error", err); 
+    });  
+    // request.execute(callback);
 }
 
 function readMessage() {
-    console.log(this.id);
+    console.log("idk");
 }
 
 chrome.runtime.onMessage.addListener(
