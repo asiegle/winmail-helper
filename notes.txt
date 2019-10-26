@@ -1,0 +1,15 @@
+Gmail API
+	message id
+		document.getElementsByClassName("adn ads")[0].getAttribute("data-message-id")
+	user id
+		email address
+	Users.messages: get
+		parameters
+			id:			message id
+			userID:		user id
+			format:		"full"
+		values
+			payload.parts -> find obj with "mimeType": "application/ms-tnef" then get
+			body.attachmentID
+
+
