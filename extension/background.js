@@ -12,8 +12,9 @@ chrome.identity.getAuthToken(
         // loadScript('https://apis.google.com/js/client.js');
         
         
-	}
+    }
 );
+
 
 function loadScript(url){
   var request = new XMLHttpRequest();
@@ -59,6 +60,7 @@ function getMessage(userId, messageId, callback) {
       'userId': userId,
       'id': messageId
     });
+    console.log(request)
     request.execute(callback);
   }
 
