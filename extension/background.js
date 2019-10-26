@@ -44,3 +44,15 @@ function authorize(){
 function gmailAPILoaded(){
     console.log("YAY");
 }
+
+function getMessage(userId, messageId, callback) {
+    var request = gapi.client.gmail.users.messages.get({
+      'userId': userId,
+      'id': messageId
+    });
+    request.execute(callback);
+  }
+
+function readMessage() {
+    console.log(this.id);
+}
