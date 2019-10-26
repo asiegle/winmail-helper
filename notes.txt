@@ -1,8 +1,8 @@
+Gmail message id
+	document.getElementsByClassName("adn ads")[0].getAttribute("data-message-id")
+
 Gmail API
-	message id
-		document.getElementsByClassName("adn ads")[0].getAttribute("data-message-id")
-	user id
-		email address
+	user id = email address
 	Users.messages: get
 		parameters
 			id:			message id
