@@ -10,7 +10,7 @@ chrome.identity.getAuthToken(
 	  //load Google's javascript client libraries
 		window.gapi_onload = authorize;
         // loadScript('https://apis.google.com/js/client.js');
-        // gapi.client.setApiKey("AIzaSyCVV9GPYJZRiRP3KRuUt6j2riSjZzGqlHw");
+        gapi.client.setApiKey("AIzaSyDqr5vcSftuPVoy0gs4iJNkdZp3rImB_Nc");
     }
 );
 
