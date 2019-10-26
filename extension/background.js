@@ -10,7 +10,7 @@ chrome.identity.getAuthToken(
 	  //load Google's javascript client libraries
 		window.gapi_onload = authorize;
         // loadScript('https://apis.google.com/js/client.js');
-        gapi.client.setApiKey("AIzaSyCVV9GPYJZRiRP3KRuUt6j2riSjZzGqlHw");
+        // gapi.client.setApiKey("AIzaSyCVV9GPYJZRiRP3KRuUt6j2riSjZzGqlHw");
     }
 );
 
@@ -45,12 +45,14 @@ function authorize(){
 			scope: 'https://www.googleapis.com/auth/gmail.readonly'
 		},
 		function(){
-		  gapi.client.load('gmail', 'v1', gmailAPILoaded);
+      gapi.client.load('gmail', 'v1', gmailAPILoaded);
+      
 		}
 	);
 }
 
 function gmailAPILoaded(){
+    gapi.client.setApiKey("AIzaSyCVV9GPYJZRiRP3KRuUt6j2riSjZzGqlHw");
     console.log("YAY");
 }
 
@@ -58,11 +60,13 @@ function getMessage(userId, messageId, callback) {
 
     var request = gapi.client.gmail.users.messages.get({
       'userId': userId,
-      'id': messageId
+      'id': messageId,
+      "format": "raw",
+      "prettyPrint": true
     });
     console.log(request)
     request.execute(callback);
-  }
+}
 
 function readMessage() {
     console.log(this.id);
