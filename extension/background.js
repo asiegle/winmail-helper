@@ -37,7 +37,7 @@ function gmailAPILoaded(){
 
 
 
-// function getMessage(userId, messageId, callback) {
+// function getMessageOLD(userId, messageId, callback) {
 //     return gapi.client.gmail.users.messages.get({
 //       'userId': userId,
 //       'id': messageId,
@@ -53,7 +53,7 @@ function gmailAPILoaded(){
 //     // request.execute(callback);
 // }
 
-async function getMessage2(userId, messageId, token){
+async function getMessage(userId, messageId, token){
     var url = "https://www.googleapis.com/gmail/v1/users/".concat(encodeURIComponent(userId), "/messages/",encodeURIComponent(messageId),"?format=full&prettyPrint=true&key=AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y");
     var auth = "Bearer ".concat(token);
     console.log(url);
@@ -72,8 +72,28 @@ async function getMessage2(userId, messageId, token){
     } else {
       alert("HTTP-Error: " + response.status);
     }
+}
 
-    // var myJson =  response.json();
+
+async function getAttachment(userId, messageId, token, attachmentId){
+  var url = "https://www.googleapis.com/gmail/v1/users/".concat(encodeURIComponent(userId), "/messages/",encodeURIComponent(messageId),"/attachments/",attachmentId,"?format=full&prettyPrint=true&key=AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y");
+    var auth = "Bearer ".concat(token);
+    // console.log(url);
+    // console.log(auth);
+    var response =  await fetch(url, {
+        headers: {
+        Authorization: auth,
+        Accept: "application/json"
+      }
+    })
+
+    if (response.ok) { // if HTTP-status is 200-299
+      // get the response body (the method explained below)
+      let json = await response.json();
+      console.log(json);
+    } else {
+      alert("HTTP-Error: " + response.status);
+    }
 }
 
 function readMessage() {
