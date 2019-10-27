@@ -79,7 +79,7 @@ async function getMessage(userId, messageId, token){
       	var attchID = parts[i].body.attachmentId;
       	var attchSize = parts[i].body.size;
 
-      	// do stuff
+      	// getAttachment(userId, messageId, token, attchID);
       }
     } else {
       alert("HTTP-Error: " + response.status);
@@ -124,7 +124,7 @@ chrome.runtime.onMessage.addListener(
           //   }
           // })
           // console.log(test)
-          getMessage2(request.usrid, request.msgid, token);
+          getMessage(request.usrid, request.msgid, token);
           // getMessage(request.usrid, request.msgid, readMessage);
           
         })
