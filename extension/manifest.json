@@ -21,8 +21,8 @@
 		"persistent": false
 	  },
 	"oauth2": {
-		"client_id": "624743473709-guudjkt9upbm3efr74o563d6bctgl59q.apps.googleusercontent.com",
-		"scopes":["https://mail.google.com/ https://www.googleapis.com/auth/gmail.readonly"]
+		"client_id": "7996700904-kte148vl33q9nc1dra384r0rv8hsssua.apps.googleusercontent.com",
+		"scopes":["https://www.googleapis.com/auth/gmail.readonly"]
 	}
 	
 
