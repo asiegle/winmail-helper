@@ -1,9 +1,12 @@
 window.addEventListener ("load", getId, false);
+window.addEventListener ("hashchange", getId, false);
 
 function getId (evt) {
     var messageId = document.getElementsByClassName("adn ads")[0].getAttribute("data-message-id");
     var userId = document.getElementsByClassName("gb_hb")[0].innerHTML;
-    var msgbody = document.getElementById(":2o");
+    // var msgbody = document.getElementById(":2o");
+    var msgbody = document.getElementsByClassName("a3s aXjCH ")[0];
+    
 
     messageId = messageId.substring(1);
     
