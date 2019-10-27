@@ -69,6 +69,18 @@ async function getMessage2(userId, messageId, token){
       // get the response body (the method explained below)
       let json = await response.json();
       console.log(json);
+
+      var i = -1;
+      var parts = json.payload.parts;
+      for(p in parts){
+      	if(parts[p].mimeType == "application/ms-tnef") i = p;
+      }
+      if(i >= 0){
+      	var attchID = parts[i].body.attachmentId;
+      	var attchSize = parts[i].body.size;
+
+      	// do stuff
+      }
     } else {
       alert("HTTP-Error: " + response.status);
     }
