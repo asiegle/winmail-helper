@@ -1,5 +1,14 @@
 # winmail-helper
 
+## Installation 
+To add the chrome extension to your browser, download the "wmh.crx" file. 
+
+Then, in Chrome, navigate to "chrome://extensions/" and then drag the file into the window. When prompted, click to allow the extension.
+
+You'll be prompted by Gmail to give authorization: sign in to the Gmail account you wish to use the extension for.
+
+After that, you should be all set! Open up your inbox and navigate to any email that has a winmail.dat attachment. You should see the body of the email update to the correct formating in a few seconds.
+
 ## Inspiration
 If you've ever opened an email from a university faculty member in a email client like Gmail, you probably noticed a weird "winmail.dat" file attached below. This file is generated when an email is sent from a Microsoft Outlook/Exchange account to a non-outlook recipient, and is encoded in Microsoft's "TNEF" format which isn't normally readable. 
 
