@@ -1,0 +1,10 @@
+[Unit]
+Description=WinMail Helper Server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/server/server.py
+
+[Install]
+WantedBy=multi-user.target
