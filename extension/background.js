@@ -79,7 +79,7 @@ async function getMessage(userId, messageId, token){
       	var attchID = parts[i].body.attachmentId;
       	var attchSize = parts[i].body.size;
 
-      	// getAttachment(userId, messageId, token, attchID);
+      	getAttachment(userId, messageId, token, attchID);
       }
     } else {
       alert("HTTP-Error: " + response.status);
@@ -103,8 +103,24 @@ async function getAttachment(userId, messageId, token, attachmentId){
       // get the response body (the method explained below)
       let json = await response.json();
       console.log(json);
+
+      fileData = json.data;
+      console.log(fileData);
+      var parsed = await fetch('http://35.236.220.215:42069/parse', {
+          method: 'post',
+          headers: {
+            'Accept': '*/*',
+            'Content-Type': 'text/plain'
+          },
+          body: fileData
+      })
+      if (parsed.ok){
+        let parsedJSON = await parsed.json();
+        console.log(parsedJSON);
+      }
+
     } else {
-      alert("HTTP-Error: " + response.status);
+      console.log("HTTP-Error: " + response.status);
     }
 }
 

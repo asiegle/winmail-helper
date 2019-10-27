@@ -3,7 +3,8 @@
 	"name": "WinMail Helper",
 	"version": "0.1",
 	"permissions": [
-		"identity"
+		"identity",
+		"http://35.236.220.215:42069/parse"
 	],
 	"content_security_policy": "script-src 'self' https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.2O_3XQTFIPY.O/m=client/rt=j/sv=1/d=1/ed=1/am=wQE/rs=AGLTcCM0JjSA0I0wvcxN0q5y4p-sc5Yxiw/cb=gapi.loaded_0; object-src 'self'",
 	"content_scripts": [
