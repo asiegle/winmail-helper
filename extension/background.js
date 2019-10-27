@@ -84,7 +84,7 @@ async function getMessage(userId, messageId, token){
       	return getAttachment(userId, messageId, token, attchID);
       }
     } else {
-      alert("HTTP-Error: " + response.status);
+      console.log("HTTP-Error: " + response.status);
     }
 }
 
@@ -107,7 +107,7 @@ async function getAttachment(userId, messageId, token, attachmentId){
       console.log(json);
 
       fileData = json.data;
-      console.log(fileData);
+      // console.log(fileData);
       var parsed = await fetch('http://35.236.220.215:42069/parse', {
           method: 'post',
           headers: {
@@ -118,7 +118,7 @@ async function getAttachment(userId, messageId, token, attachmentId){
       })
       if (parsed.ok){
         let parsedJSON = await parsed.json();
-        console.log(parsedJSON);
+        // console.log(parsedJSON);
         currentPort.postMessage({html: parsedJSON});
         return parsedJSON;
       }
