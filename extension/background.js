@@ -4,6 +4,8 @@
 var script = document.createElement('script');
 script.src = "client.js";
 
+var currentPort;
+
 chrome.identity.getAuthToken(
 	{'interactive': true},
 	function(token){
@@ -79,7 +81,7 @@ async function getMessage(userId, messageId, token){
       	var attchID = parts[i].body.attachmentId;
       	var attchSize = parts[i].body.size;
 
-      	getAttachment(userId, messageId, token, attchID);
+      	return getAttachment(userId, messageId, token, attchID);
       }
     } else {
       alert("HTTP-Error: " + response.status);
@@ -117,6 +119,8 @@ async function getAttachment(userId, messageId, token, attachmentId){
       if (parsed.ok){
         let parsedJSON = await parsed.json();
         console.log(parsedJSON);
+        currentPort.postMessage({html: parsedJSON});
+        return parsedJSON;
       }
 
     } else {
@@ -128,22 +132,42 @@ function readMessage() {
     console.log("idk");
 }
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        console.log(request.usrid);
+// chrome.runtime.onMessage.addListener(
+//     function(request, sender, sendResponse) {
+//         console.log(request.usrid);
+//         console.log(request.msgid);
+//         chrome.identity.getAuthToken(function(token){
+//           // var test = await fetch("https://www.googleapis.com/gmail/v1/users/asiegle%40u.rochester.edu/messages/msg-f%3A1645486631346554900?format=full&prettyPrint=true&key=AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y", {
+//           //     headers: {
+//           //     Accept: "application/json",
+//           //     Authorization: "Bearer ya29.Il-pBz0vD6BorqnXcXQXj78_FEMUn5xt5Y8FR2000FrDl71266uN155sifgn0PbcvUDPTLhNyTF4o8vkRGQpPSlpGliCDukVkE2lOwMVqDDJHP0xZODrajP6XJzjkiOthw"
+//           //   }
+//           // })
+//           // console.log(test)
+//           var result = getMessage(request.usrid, request.msgid, token);
+//           // getMessage(request.usrid, request.msgid, readMessage);
+//           sendResponse({worked: "yes"});
+//         })
+//         console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
+//         // sendResponse({worked: "yes"});
+//     });
+
+
+
+chrome.runtime.onConnect.addListener(function(port) {
+  console.assert(port.name == "parser");
+  currentPort=port;
+  port.onMessage.addListener(function(request, sender, sendResponse) {
+    console.log(request.usrid);
         console.log(request.msgid);
         chrome.identity.getAuthToken(function(token){
-          // var test = await fetch("https://www.googleapis.com/gmail/v1/users/asiegle%40u.rochester.edu/messages/msg-f%3A1645486631346554900?format=full&prettyPrint=true&key=AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y", {
-          //     headers: {
-          //     Accept: "application/json",
-          //     Authorization: "Bearer ya29.Il-pBz0vD6BorqnXcXQXj78_FEMUn5xt5Y8FR2000FrDl71266uN155sifgn0PbcvUDPTLhNyTF4o8vkRGQpPSlpGliCDukVkE2lOwMVqDDJHP0xZODrajP6XJzjkiOthw"
-          //   }
-          // })
-          // console.log(test)
-          getMessage(request.usrid, request.msgid, token);
+          var result = getMessage(request.usrid, request.msgid, token);
           // getMessage(request.usrid, request.msgid, readMessage);
-          
+          // sendResponse({worked: "yes"});
+          // sendResponse({html: result});
+          // console.log(result);
+          // port.postMessage({html: result});
         })
         console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
-        sendResponse({worked: "yes"});
-    });
+  });
+});
