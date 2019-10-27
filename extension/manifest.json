@@ -2,6 +2,11 @@
 	"manifest_version": 2,
 	"name": "WinMail Helper",
 	"version": "0.1",
+	"icons": {
+		"16": "icon16.png",
+		"48": "icon48.png",
+		"128": "icon128.png"
+	},
 	"permissions": [
 		"identity",
 		"http://35.236.220.215:42069/parse"
