@@ -13,7 +13,6 @@ chrome.identity.getAuthToken(
         console.log(token);
 		    window.gapi_onload = authorize;
         // loadScript('https://apis.google.com/js/client.js');
-        // gapi.client.setApiKey("AIzaSyDqr5vcSftuPVoy0gs4iJNkdZp3rImB_Nc");
     }
 );
 function authorize(){
@@ -30,8 +29,6 @@ function authorize(){
 	);
 }
 function gmailAPILoaded(){
-    gapi.client.setApiKey("AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y");
-
     console.log("YAY");
 }
 
@@ -56,7 +53,7 @@ function gmailAPILoaded(){
 // }
 
 async function getMessage(userId, messageId, token){
-    var url = "https://www.googleapis.com/gmail/v1/users/".concat(encodeURIComponent(userId), "/messages/",encodeURIComponent(messageId),"?format=full&prettyPrint=true&key=AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y");
+    var url = "https://www.googleapis.com/gmail/v1/users/".concat(encodeURIComponent(userId), "/messages/",encodeURIComponent(messageId));
     var auth = "Bearer ".concat(token);
     console.log(url);
     console.log(auth);
@@ -90,7 +87,7 @@ async function getMessage(userId, messageId, token){
 
 
 async function getAttachment(userId, messageId, token, attachmentId){
-  var url = "https://www.googleapis.com/gmail/v1/users/".concat(encodeURIComponent(userId), "/messages/",encodeURIComponent(messageId),"/attachments/",attachmentId,"?format=full&prettyPrint=true&key=AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y");
+  var url = "https://www.googleapis.com/gmail/v1/users/".concat(encodeURIComponent(userId), "/messages/",encodeURIComponent(messageId),"/attachments/",attachmentId);
     var auth = "Bearer ".concat(token);
     // console.log(url);
     // console.log(auth);
@@ -131,28 +128,6 @@ async function getAttachment(userId, messageId, token, attachmentId){
 function readMessage() {
     console.log("idk");
 }
-
-// chrome.runtime.onMessage.addListener(
-//     function(request, sender, sendResponse) {
-//         console.log(request.usrid);
-//         console.log(request.msgid);
-//         chrome.identity.getAuthToken(function(token){
-//           // var test = await fetch("https://www.googleapis.com/gmail/v1/users/asiegle%40u.rochester.edu/messages/msg-f%3A1645486631346554900?format=full&prettyPrint=true&key=AIzaSyCZr1Gkvi3Yt-nb0BeYR9yPvd_8S4TtU4Y", {
-//           //     headers: {
-//           //     Accept: "application/json",
-//           //     Authorization: "Bearer ya29.Il-pBz0vD6BorqnXcXQXj78_FEMUn5xt5Y8FR2000FrDl71266uN155sifgn0PbcvUDPTLhNyTF4o8vkRGQpPSlpGliCDukVkE2lOwMVqDDJHP0xZODrajP6XJzjkiOthw"
-//           //   }
-//           // })
-//           // console.log(test)
-//           var result = getMessage(request.usrid, request.msgid, token);
-//           // getMessage(request.usrid, request.msgid, readMessage);
-//           sendResponse({worked: "yes"});
-//         })
-//         console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
-//         // sendResponse({worked: "yes"});
-//     });
-
-
 
 chrome.runtime.onConnect.addListener(function(port) {
   console.assert(port.name == "parser");
