@@ -160,14 +160,15 @@ chrome.runtime.onConnect.addListener(function(port) {
   port.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(request.usrid);
         console.log(request.msgid);
-        chrome.identity.getAuthToken(function(token){
-          var result = getMessage(request.usrid, request.msgid, token);
-          // getMessage(request.usrid, request.msgid, readMessage);
-          // sendResponse({worked: "yes"});
-          // sendResponse({html: result});
-          // console.log(result);
-          // port.postMessage({html: result});
-        })
+        chrome.identity.getAuthToken(	{'interactive': true},
+          function(token){
+            var result = getMessage(request.usrid, request.msgid, token);
+            // getMessage(request.usrid, request.msgid, readMessage);
+            // sendResponse({worked: "yes"});
+            // sendResponse({html: result});
+            // console.log(result);
+            // port.postMessage({html: result});
+          })
         console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
   });
 });
