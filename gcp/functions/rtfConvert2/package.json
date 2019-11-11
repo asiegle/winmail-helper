@@ -1,0 +1,8 @@
+{
+  "name": "rtfConvert2",
+  "version": "0.0.1",
+  "dependencies": {
+    "@google-cloud/pubsub": "^0.18.0",
+    "@iarna/rtf-to-html": "^1.1.0"
+  }
+}

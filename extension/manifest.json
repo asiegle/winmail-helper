@@ -1,15 +1,14 @@
 {
 	"manifest_version": 2,
 	"name": "WinMail Helper",
-	"version": "0.2",
+	"version": "0.3",
 	"icons": {
 		"16": "icon16.png",
 		"48": "icon48.png",
 		"128": "icon128.png"
 	},
 	"permissions": [
-		"identity",
-		"http://35.236.220.215:42069/parse"
+		"identity"
 	],
 	"content_security_policy": "script-src 'self' https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.2O_3XQTFIPY.O/m=client/rt=j/sv=1/d=1/ed=1/am=wQE/rs=AGLTcCM0JjSA0I0wvcxN0q5y4p-sc5Yxiw/cb=gapi.loaded_0; object-src 'self'",
 	"content_scripts": [
@@ -27,9 +26,10 @@
 		"persistent": false
 	  },
 	"oauth2": {
-		"client_id": "7996700904-kte148vl33q9nc1dra384r0rv8hsssua.apps.googleusercontent.com",
+		"client_id": "307244562177-0ucqegrosm3sog2f0nk2k9h5jrcjrvtb.apps.googleusercontent.com",
 		"scopes":["https://www.googleapis.com/auth/gmail.readonly"]
-	}
+	},
+	"key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk0j1tsPHV5/K/9yH+DHjUZGzygKSeKPHW4fxrsLoz/q47Gfui6rER/Wx7f/95GREUHg2cvA5bFFwmSa97fgpQP38SsyuUD3RAN+OQ6Ho4A5f/IJmb/W+iTZgZWHMt1sgjw3qndaTz4BZRNpdhoMrP8eaOfJm3lSzf+dQmq0YnVfbNQxSasdvDOESI5Z03/W8wBwkaYgrZZy+WQcfuLkApv4V5Pm5lMlOtpNGq7pP0j8sneRSy+7JXmE6ZMP+2Po15fyfMikVDcS04Hxx+HBhkVqjDoH9yM9bO3gh2W5jgBekRB+r3VXnsH04ay8tAcvLdOEEHdov70P/AnZl1rLnUwIDAQAB"
 	
 
 }

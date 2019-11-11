@@ -18,7 +18,7 @@ chrome.identity.getAuthToken(
 function authorize(){
   gapi.auth.authorize(
 		{
-			client_id: '7996700904-kte148vl33q9nc1dra384r0rv8hsssua.apps.googleusercontent.com',
+			client_id: '307244562177-0ucqegrosm3sog2f0nk2k9h5jrcjrvtb.apps.googleusercontent.com',
 			immediate: true,
 			scope: 'https://www.googleapis.com/auth/gmail.readonly'
 		},
@@ -29,28 +29,9 @@ function authorize(){
 	);
 }
 function gmailAPILoaded(){
-    console.log("YAY");
+    console.log("GAPI Loaded Succesfully");
 }
 
-
-
-
-
-// function getMessageOLD(userId, messageId, callback) {
-//     return gapi.client.gmail.users.messages.get({
-//       'userId': userId,
-//       'id': messageId,
-//       "prettyPrint": true
-//     })
-//       .then(function(response) {
-//       // Handle the results here (response.result has the parsed body).
-//       console.log("Response", response);
-//     },
-//     function(err) { 
-//       console.error("Execute error", err); 
-//     });  
-//     // request.execute(callback);
-// }
 
 async function getMessage(userId, messageId, token){
     var url = "https://www.googleapis.com/gmail/v1/users/".concat(encodeURIComponent(userId), "/messages/",encodeURIComponent(messageId));
@@ -99,13 +80,15 @@ async function getAttachment(userId, messageId, token, attachmentId){
     })
 
     if (response.ok) { // if HTTP-status is 200-299
-      // get the response body (the method explained below)
+      // get the response body 
       let json = await response.json();
       console.log(json);
 
       fileData = json.data;
       // console.log(fileData);
-      var parsed = await fetch('http://35.236.220.215:42069/parse', {
+      //https://console.cloud.google.com/iam-admin/serviceaccounts/project?project=igneous-sweep-257100
+      var parsed = await fetch('https://us-central1-igneous-sweep-257100.cloudfunctions.net/parseFile2', {
+      // var parsed = await fetch('http://35.236.220.215:42069/parse', {
           method: 'post',
           headers: {
             'Accept': '*/*',
@@ -116,7 +99,7 @@ async function getAttachment(userId, messageId, token, attachmentId){
       if (parsed.ok){
         let parsedJSON = await parsed.json();
         // console.log(parsedJSON);
-        currentPort.postMessage({html: parsedJSON});
+        currentPort.postMessage({body: parsedJSON});
         return parsedJSON;
       }
 
