@@ -2,6 +2,7 @@
 	"manifest_version": 2,
 	"name": "WinMail Helper",
 	"version": "0.3",
+  	"description": "Automatic winmail.dat attachment reader for Gmail",
 	"icons": {
 		"16": "icon16.png",
 		"48": "icon48.png",
@@ -15,6 +16,7 @@
 		{
 		  "matches": ["https://mail.google.com/mail/*"],
 		  "run_at": "document_idle",
+		  "all_frames": true,
 		  "js": ["checkAttachment.js"]
 		}
 	  ],
