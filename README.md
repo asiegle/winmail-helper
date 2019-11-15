@@ -1,5 +1,7 @@
 # winmail-helper
 
+https://chrome.google.com/webstore/detail/winmail-helper/elklemakijgjpgldjcebdmmlbpanlfjb?hl
+
 ## Installation 
 To add the chrome extension to your browser, download the "wmh.crx" file. 
 
